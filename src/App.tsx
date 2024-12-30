@@ -1,9 +1,8 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import { Navigate, Outlet } from "react-router";
 import { useUser } from "@clerk/clerk-react";
-import "./App.css";
+import Header from "./components/custom/Header";
+import { Toaster } from "./components/ui/sonner";
 
 function App() {
   const { user, isLoaded, isSignedIn } = useUser();
@@ -11,9 +10,12 @@ function App() {
   if (!isSignedIn && isLoaded) {
     return <Navigate to={"/auth/sign-in"} />;
   }
+
   return (
     <>
+      <Header />
       <Outlet />
+      <Toaster />
     </>
   );
 }
